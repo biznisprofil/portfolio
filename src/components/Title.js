@@ -15,17 +15,23 @@ class Title extends Component {
     }
 
     componentWillUnmount() {
+
+        console.log('Unmount');
         clearInterval(this.titleInterval);
+        clearInterval(this.fadeInterval);
     }
 
     animateTitles = () => {
         this.titleInterval = setInterval(() => {
             const titleIndex = (this.state.titleIndex + 1) % TITLES.length;
             this.setState({ titleIndex: titleIndex });
+
+            console.log('fire at four');
         }, 4000);
 
-        this.titleInterval = setInterval(() => {
+        this.fadeInterval = setInterval(() => {
             this.setState({ fadeIn: !this.state.fadeIn });
+            console.log('fire at two')
         }, 2000);
     };
 
